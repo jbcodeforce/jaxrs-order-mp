@@ -9,7 +9,7 @@ RUN apt-get update && \
 VOLUME /volume/gitrepo
 
 # create working directory
-RUN mkdir -p /local/gitrepo
+RUN mkdir -p /local/gitrepo 
 WORKDIR /local/gitrepo
 COPY src/ /local/gitrepo/src
 COPY pom.xml /local/gitrepo/pom.xml
@@ -17,7 +17,7 @@ COPY pom.xml /local/gitrepo/pom.xml
 RUN mvn install -DskipTests=true
 
 ### Stage 2 - Docker Build
-FROM open-liberty:microProfile3-java11
+FROM open-liberty
 LABEL maintainer="IBM Cloud Architecture Solution Engineering at IBM Cloud"
 
 USER 1001

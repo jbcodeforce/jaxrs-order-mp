@@ -17,6 +17,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Gauge;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
@@ -65,7 +67,7 @@ public class OrderManagementResource {
     @Operation(summary = "Returns order references with order_id, customer_id and product_id", description = "")
     @APIResponses(value = {
             @APIResponse(responseCode = "404", description = "No records found", content = @Content(mediaType = "text/plain")),
-            @APIResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json")) })
+			@APIResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json")) })
     public Response getAllOrders() {
 		Collection<OrderEntity> orderList = getOrCreateOrderService().getAllPersistedOrders();
         if (! orderList.isEmpty()) {

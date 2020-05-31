@@ -20,6 +20,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.openliberty</groupId>
+            <artifactId>openliberty-runtime</artifactId>
+            <version>[20.0.0.5,)</version>
+            <type>zip</type>
+        </dependency>
         <!-- Provided dependencies -->
         <dependency>
             <groupId>jakarta.platform</groupId>
@@ -27,6 +33,7 @@
             <version>8.0.0</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
@@ -92,6 +99,8 @@
                     <systemPropertyVariables>
                         <http.port>${liberty.var.default.http.port}</http.port>
                         <context.root>${liberty.var.app.context.root}</context.root>
+                        <https.port>${liberty.var.default.https.port}</https.port>
+                        <javax.net.ssl.trustStore>${project.build.directory}/liberty/wlp/usr/servers/defaultServer/resources/security/key.jks</javax.net.ssl.trustStore>
                     </systemPropertyVariables>
                     <!-- end::testsysprops[] -->
                 </configuration>
